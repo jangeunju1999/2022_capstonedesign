@@ -160,6 +160,7 @@ class BarcodeReaderViewController: UIViewController, QRCodeReaderViewControllerD
     
     // MARK: [QRCodeReaderViewController 대리자 메소드]
     func reader(_ reader: QRCodeReaderViewController, didScanResult result: QRCodeReaderResult) {
+        guard let pvc = self.presentingViewController else {return}
         print("")
         print("===============================")
         print("[ViewController >> reader() :: QR 스캔 종료 실시]")
@@ -167,6 +168,13 @@ class BarcodeReaderViewController: UIViewController, QRCodeReaderViewControllerD
         print("")
         reader.stopScanning() // 스캔 중지
         self.dismiss(animated: true, completion: nil) // 카메라 팝업창 없앰
+        self.dismiss(animated: true){
+            let storyBoard : UIStoryboard? = UIStoryboard(name: "Main", bundle: Bundle.main)
+            guard let uvc = storyBoard?.instantiateViewController(identifier: "writeReview") else {return}
+            uvc.modalTransitionStyle = UIModalTransitionStyle.coverVertical
+            uvc.modalPresentationStyle = .fullScreen
+            pvc.present(uvc, animated: true, completion: nil)
+        }
     }
 
     
@@ -185,7 +193,7 @@ class BarcodeReaderViewController: UIViewController, QRCodeReaderViewControllerD
     
     // MARK: [QR 스캔 종료 실시]
     func readerDidCancel(_ reader: QRCodeReaderViewController) {
-        guard let pvc = self.presentingViewController else {return}
+        
         print("")
         print("===============================")
         print("[ViewController >> readerDidCancel() :: QR 스캔 취소 실시]")
@@ -193,15 +201,7 @@ class BarcodeReaderViewController: UIViewController, QRCodeReaderViewControllerD
         print("")
         reader.stopScanning() // 스캔 중지
         self.dismiss(animated: true, completion: nil) // 카메라 팝업창 없앰
-        self.dismiss(animated: true){
-            let storyBoard : UIStoryboard? = UIStoryboard(name: "Main", bundle: Bundle.main)
-            
-            guard let uvc = storyBoard?.instantiateViewController(identifier: "writeReview") else {return}
-            
-            uvc.modalTransitionStyle = UIModalTransitionStyle.coverVertical
-            uvc.modalPresentationStyle = .fullScreen
-            pvc.present(uvc, animated: true, completion: nil)
-        }
+        self.dismiss(animated: true, completion: nil)
     }
     
     
