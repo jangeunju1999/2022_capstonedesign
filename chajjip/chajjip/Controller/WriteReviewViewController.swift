@@ -13,8 +13,10 @@ class WriteReviewViewController: UIViewController {
     
     
     @IBOutlet weak var rating: RatingController!
+    private let vm = WriteViewModel()
     var selectAssests = [PHAsset]()
-    let imagePicker = ImagePickerController()
+    
+    @IBOutlet weak var reviewImageCollectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,3 +52,15 @@ class WriteReviewViewController: UIViewController {
         }
     }
 }
+
+//extension WriteReviewViewController : UICollectionViewDelegate, UICollectionViewDataSource{
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        <#code#>
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        <#code#>
+//    }
+//
+//
+//}
