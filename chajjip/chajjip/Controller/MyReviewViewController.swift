@@ -10,6 +10,7 @@ import UIKit
 class MyReviewViewController: UIViewController {
 
     @IBOutlet weak var myReviewNav: UINavigationBar!
+    @IBOutlet weak var userName: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
