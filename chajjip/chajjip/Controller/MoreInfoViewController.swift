@@ -14,6 +14,7 @@ class MoreInfoViewController: UIViewController {
     @IBOutlet weak var address: UILabel!
     @IBOutlet weak var contact: UILabel!
     @IBOutlet weak var reviewTableView: UITableView!
+    @IBOutlet weak var background: UIView!
     
     var moreInfo : TouristAndRestaurant?
     
@@ -26,8 +27,12 @@ class MoreInfoViewController: UIViewController {
             contact.text = safeInfo.contact
         }
         // Do any additional setup after loading the view.
+        setUp()
     }
-    
+    func setUp(){
+        background.layer.cornerRadius = 50
+        thumbnail.layer.cornerRadius = 50
+    }
 
 
 }

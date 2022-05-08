@@ -13,6 +13,7 @@ class WriteReviewViewController: UIViewController {
     
     
     @IBOutlet weak var rating: RatingController!
+    @IBOutlet weak var reviewTextField: UITextView!
     private let vm = WriteViewModel()
     var selectAssests = [PHAsset]()
     
@@ -20,13 +21,27 @@ class WriteReviewViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUp()
+    }
+    
+    func setUp(){
+        //setting reviewTextField
+        reviewTextField.layer.borderWidth = 1.0
+        reviewTextField.layer.borderColor = UIColor.black.cgColor
+        reviewTextField.layer.cornerRadius = 10
+        reviewTextField.delegate = self
+        reviewTextField.text = "다녀왔던 여행지나 식당에 대해 추천하는 내용이나 솔직한 리뷰를 작성해주세요. 악플성 글, 리뷰와 관련이 없다고 의심 또는 판단 되는 글은 예고없이 삭제 뢸 수 있습니다."
+        reviewTextField.textColor = UIColor.lightGray
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print("Touch")
+        self.view.endEditing(true)
     }
     
     @IBAction func pressedBackButton(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }
-    
-    
     
 //    @IBAction func clickGallery(_ sender: UIButton) {
 //        
@@ -49,6 +64,22 @@ class WriteReviewViewController: UIViewController {
     func convertAssestToImage(){
         if selectAssests.count != 0{
             
+        }
+    }
+}
+
+extension WriteReviewViewController : UITextViewDelegate{
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray{
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty{
+            textView.text = "내용을 입력해주세요."
+            textView.textColor = UIColor.lightGray
         }
     }
 }

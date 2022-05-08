@@ -17,6 +17,10 @@
 		C700304B2824433A00352544 /* SearchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C700304A2824433A00352544 /* SearchResultViewModel.swift */; };
 		C700304D2824435C00352544 /* RecommendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C700304C2824435C00352544 /* RecommendViewModel.swift */; };
 		C700304F2824437400352544 /* MyReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C700304E2824437400352544 /* MyReviewViewModel.swift */; };
+		C70030512824C65900352544 /* SearchResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70030502824C65900352544 /* SearchResModel.swift */; };
+		C70030532824FBA700352544 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70030522824FBA700352544 /* SearchViewModel.swift */; };
+		C70030752826188500352544 /* CustomSideMenuNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70030742826188500352544 /* CustomSideMenuNavigation.swift */; };
+		C700307A282792B500352544 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7003079282792B500352544 /* Launch Screen.storyboard */; };
 		C7351E0E27FAE32D0062FD23 /* MoreInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7351E0D27FAE32D0062FD23 /* MoreInfoViewController.swift */; };
 		C7351E1027FB32630062FD23 /* WriteReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7351E0F27FB32630062FD23 /* WriteReviewViewController.swift */; };
 		C784873E27F6CE5700920591 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C784872027F6CE5700920591 /* Constants.swift */; };
@@ -26,7 +30,7 @@
 		C784874227F6CE5700920591 /* BarcodeReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C784872527F6CE5700920591 /* BarcodeReaderViewController.swift */; };
 		C784874327F6CE5700920591 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C784872627F6CE5700920591 /* SearchViewController.swift */; };
 		C784874427F6CE5700920591 /* MyReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C784872727F6CE5700920591 /* MyReviewViewController.swift */; };
-		C784874527F6CE5700920591 /* LoginSideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C784872827F6CE5700920591 /* LoginSideMenuViewController.swift */; };
+		C784874527F6CE5700920591 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C784872827F6CE5700920591 /* SideMenuViewController.swift */; };
 		C784874627F6CE5700920591 /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C784872927F6CE5700920591 /* MainPageViewController.swift */; };
 		C784874727F6CE5700920591 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C784872A27F6CE5700920591 /* LoginViewController.swift */; };
 		C784874827F6CE5700920591 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C784872B27F6CE5700920591 /* TabBarViewController.swift */; };
@@ -68,6 +72,10 @@
 		C700304A2824433A00352544 /* SearchResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewModel.swift; sourceTree = "<group>"; };
 		C700304C2824435C00352544 /* RecommendViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendViewModel.swift; sourceTree = "<group>"; };
 		C700304E2824437400352544 /* MyReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReviewViewModel.swift; sourceTree = "<group>"; };
+		C70030502824C65900352544 /* SearchResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResModel.swift; sourceTree = "<group>"; };
+		C70030522824FBA700352544 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		C70030742826188500352544 /* CustomSideMenuNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSideMenuNavigation.swift; sourceTree = "<group>"; };
+		C7003079282792B500352544 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		C7351E0D27FAE32D0062FD23 /* MoreInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreInfoViewController.swift; sourceTree = "<group>"; };
 		C7351E0F27FB32630062FD23 /* WriteReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReviewViewController.swift; sourceTree = "<group>"; };
 		C78486F527F6CB4300920591 /* chajjip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = chajjip.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,7 +86,7 @@
 		C784872527F6CE5700920591 /* BarcodeReaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarcodeReaderViewController.swift; sourceTree = "<group>"; };
 		C784872627F6CE5700920591 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		C784872727F6CE5700920591 /* MyReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyReviewViewController.swift; sourceTree = "<group>"; };
-		C784872827F6CE5700920591 /* LoginSideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginSideMenuViewController.swift; sourceTree = "<group>"; };
+		C784872827F6CE5700920591 /* SideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		C784872927F6CE5700920591 /* MainPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
 		C784872A27F6CE5700920591 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C784872B27F6CE5700920591 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
@@ -151,8 +159,16 @@
 			isa = PBXGroup;
 			children = (
 				C70030402823AFAF00352544 /* RegisterResModel.swift */,
+				C70030502824C65900352544 /* SearchResModel.swift */,
 			);
 			path = ResponseModel;
+			sourceTree = "<group>";
+		};
+		C700307628261A3100352544 /* SideMenu */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SideMenu;
 			sourceTree = "<group>";
 		};
 		C78486EC27F6CB4300920591 = {
@@ -195,14 +211,16 @@
 		C784872227F6CE5700920591 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C700307628261A3100352544 /* SideMenu */,
 				C7D1EB1C27FDF7AE00A9E747 /* Utilities */,
+				C784872C27F6CE5700920591 /* ProfileSideViewController.swift */,
+				C70030742826188500352544 /* CustomSideMenuNavigation.swift */,
+				C784872827F6CE5700920591 /* SideMenuViewController.swift */,
 				C784872327F6CE5700920591 /* ViewController.swift */,
 				C784872427F6CE5700920591 /* SearchResultTableViewController.swift */,
 				C784872527F6CE5700920591 /* BarcodeReaderViewController.swift */,
 				C784872627F6CE5700920591 /* SearchViewController.swift */,
 				C784872727F6CE5700920591 /* MyReviewViewController.swift */,
-				C784872827F6CE5700920591 /* LoginSideMenuViewController.swift */,
-				C784872C27F6CE5700920591 /* ProfileSideViewController.swift */,
 				C784872927F6CE5700920591 /* MainPageViewController.swift */,
 				C784872A27F6CE5700920591 /* LoginViewController.swift */,
 				C784872B27F6CE5700920591 /* TabBarViewController.swift */,
@@ -241,6 +259,7 @@
 			isa = PBXGroup;
 			children = (
 				C784873627F6CE5700920591 /* Main.storyboard */,
+				C7003079282792B500352544 /* Launch Screen.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -269,6 +288,7 @@
 				C700304A2824433A00352544 /* SearchResultViewModel.swift */,
 				C700304C2824435C00352544 /* RecommendViewModel.swift */,
 				C700304E2824437400352544 /* MyReviewViewModel.swift */,
+				C70030522824FBA700352544 /* SearchViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -372,6 +392,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C700307A282792B500352544 /* Launch Screen.storyboard in Resources */,
 				C7D1EB9728033C1800A9E747 /* RecommendListTableViewCell.xib in Resources */,
 				C784873F27F6CE5700920591 /* Assets.xcassets in Resources */,
 				C7D1EB8B2801A8E300A9E747 /* MyReviewTableViewCell.xib in Resources */,
@@ -432,6 +453,7 @@
 				C7351E1027FB32630062FD23 /* WriteReviewViewController.swift in Sources */,
 				C7D1EB862800A07200A9E747 /* WriteReview.swift in Sources */,
 				C784874B27F6CE5700920591 /* User.swift in Sources */,
+				C70030752826188500352544 /* CustomSideMenuNavigation.swift in Sources */,
 				C784874D27F6CE5700920591 /* WeatherData.swift in Sources */,
 				C784875327F6CE5700920591 /* AppDelegate.swift in Sources */,
 				C7D1EB8A2801A8E300A9E747 /* MyReviewTableViewCell.swift in Sources */,
@@ -450,7 +472,7 @@
 				C784873E27F6CE5700920591 /* Constants.swift in Sources */,
 				C7D1EB8E2801EBBA00A9E747 /* RecommendViewController.swift in Sources */,
 				C784874227F6CE5700920591 /* BarcodeReaderViewController.swift in Sources */,
-				C784874527F6CE5700920591 /* LoginSideMenuViewController.swift in Sources */,
+				C784874527F6CE5700920591 /* SideMenuViewController.swift in Sources */,
 				C700304B2824433A00352544 /* SearchResultViewModel.swift in Sources */,
 				C784874927F6CE5700920591 /* ProfileSideViewController.swift in Sources */,
 				C784874427F6CE5700920591 /* MyReviewViewController.swift in Sources */,
@@ -465,8 +487,10 @@
 				C784874827F6CE5700920591 /* TabBarViewController.swift in Sources */,
 				C7D1EB1E27FDF7DD00A9E747 /* RatingController.swift in Sources */,
 				C784874E27F6CE5700920591 /* WeatherModel.swift in Sources */,
+				C70030532824FBA700352544 /* SearchViewModel.swift in Sources */,
 				C7351E0E27FAE32D0062FD23 /* MoreInfoViewController.swift in Sources */,
 				C784875127F6CE5700920591 /* SearchResultCell.swift in Sources */,
+				C70030512824C65900352544 /* SearchResModel.swift in Sources */,
 				C784874127F6CE5700920591 /* SearchResultTableViewController.swift in Sources */,
 				C70030412823AFAF00352544 /* RegisterResModel.swift in Sources */,
 			);
@@ -613,8 +637,13 @@
 				ENABLE_BITCODE = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = chajjip/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "사용자의 카메라를 사용하려고 합니다.";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "사용자의 위치정보를 받아오려고 합니다.";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "사용자의 위치를 받습니다.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용자의 위치정보를 받아오려고 합니다.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "사용자의 갤러리에서 사진을 가져오려 합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -642,8 +671,13 @@
 				ENABLE_BITCODE = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = chajjip/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "사용자의 카메라를 사용하려고 합니다.";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "사용자의 위치정보를 받아오려고 합니다.";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "사용자의 위치를 받습니다.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용자의 위치정보를 받아오려고 합니다.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "사용자의 갤러리에서 사진을 가져오려 합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

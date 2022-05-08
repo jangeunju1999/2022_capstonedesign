@@ -7,10 +7,15 @@
 
 import UIKit
 
+protocol SearchDelegate{
+    func searchResultDidSave(vm : SearchResultViewModel)
+}
+
 class SearchViewController: UIViewController {
 
     @IBOutlet weak var searchBar: UISearchBar!
-    
+    var delegate : SearchDelegate?
+    var searchManager = SearchManager()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.searchBar.delegate = self
@@ -25,6 +30,15 @@ class SearchViewController: UIViewController {
 extension SearchViewController : UISearchBarDelegate{
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         print(searchBar.text!)
-        performSegue(withIdentifier: "searchResult", sender: nil)
+        self.performSegue(withIdentifier: "searchResult", sender: nil)
+        
+//        if searchBar.text! != nil{
+//            searchManager.search(text: searchBar.text!) { vm in
+//                print("move search result page")
+//                self.delegate?.searchResultDidSave(vm: vm)
+//
+//            }
+//        }
+        
     }
 }

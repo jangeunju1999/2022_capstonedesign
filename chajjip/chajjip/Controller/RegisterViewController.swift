@@ -9,24 +9,40 @@ import UIKit
 
 class RegisterViewController: UIViewController {
 
-    @IBOutlet weak var profileImage: UIButton!
+    @IBOutlet weak var profileImage: UIImageView!
+    let imagePickerController = UIImagePickerController()
+    let alterController = UIAlertController(title: "올릴 방식을 선택하세요", message: "카메라 또는 앨범", preferredStyle: .actionSheet)
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var nameTextField: UITextField!
     
-    @IBAction func addProfileImage(_ sender: UIButton) {
-        let alert = UIAlertController(title: "선택", message: "어디서 사진을 가져오시겠습니까?", preferredStyle: .actionSheet)
-        let library = UIAlertAction(title: "사진앨범", style: .default) { action in
-            //self.openLibrary()
-        }
-    }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        //profile image setting
+        addGestureRecognizer()
+        enrollAlertEvent()
+        self.imagePickerController.delegate = self
+        
+        setUp()
         // Do any additional setup after loading the view.
+    }
+    
+    func setUp(){
+        let myColor = UIColor(displayP3Red: 52/255, green: 152/255, blue: 219/255, alpha: 1.0)
+        let navBarAppearance = UINavigationBarAppearance()
+        navBarAppearance.backgroundColor = myColor
+        UINavigationBar.appearance().standardAppearance = navBarAppearance
+        UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
+        profileImage.layer.cornerRadius = profileImage.frame.width/2
+        profileImage.clipsToBounds = true
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     @IBAction func pressedRegister(_ sender: UIButton) {
@@ -49,14 +65,65 @@ class RegisterViewController: UIViewController {
         
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func enrollAlertEvent(){
+        let photoLibraryAlertAction = UIAlertAction(title: "앨범", style: .default) { (action) in
+            self.openAlbum()
+        }
+        let cameraAlertAction = UIAlertAction(title: "카메라", style: .default) { (action) in
+            self.openCamera()
+        }
+        let cancelAlertAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        self.alterController.addAction(photoLibraryAlertAction)
+        self.alterController.addAction(cameraAlertAction)
+        self.alterController.addAction(cancelAlertAction)
+        guard let alertControllerPopoverPresentationController = alterController.popoverPresentationController else {return}
+        prepareForPopoverPresentation(alertControllerPopoverPresentationController)
     }
-    */
+    
+    func addGestureRecognizer(){
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.tappedProfileImageView(_:)))
+        self.profileImage.addGestureRecognizer(tapGestureRecognizer)
+        self.profileImage.isUserInteractionEnabled = true
+    }
+    
+    @objc func tappedProfileImageView(_ gesture : UITapGestureRecognizer){
+        self.present(alterController, animated: true, completion: nil)
+    }
+    
+}
 
+extension RegisterViewController : UIPopoverPresentationControllerDelegate{
+    func prepareForPopoverPresentation(_ popoverPresentationController: UIPopoverPresentationController){
+        if let popoverPresentationController = self.alterController.popoverPresentationController{
+            popoverPresentationController.sourceView = self.view
+            popoverPresentationController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+            popoverPresentationController.permittedArrowDirections = []
+        }
+        
+    }
+}
+
+extension RegisterViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+    func openAlbum(){
+        self.imagePickerController.sourceType = .photoLibrary
+        present(self.imagePickerController, animated: false, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
+            profileImage.image = image
+        }else{
+            print("Error detected in didFinishPickingMediaWithInfo method")
+        }
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func openCamera(){
+        if UIImagePickerController.isSourceTypeAvailable(.camera){
+            self.imagePickerController.sourceType = .camera
+            present(self.imagePickerController, animated: false, completion: nil)
+        }else{
+            print("Camera not available as for now")
+        }
+    }
 }
