@@ -32,11 +32,7 @@ class RegisterViewController: UIViewController {
     }
     
     func setUp(){
-        let myColor = UIColor(displayP3Red: 52/255, green: 152/255, blue: 219/255, alpha: 1.0)
         let navBarAppearance = UINavigationBarAppearance()
-        navBarAppearance.backgroundColor = myColor
-        UINavigationBar.appearance().standardAppearance = navBarAppearance
-        UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
         profileImage.layer.cornerRadius = profileImage.frame.width/2
         profileImage.clipsToBounds = true
     }

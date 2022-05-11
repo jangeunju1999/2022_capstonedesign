@@ -15,18 +15,10 @@ class MoreInfoViewController: UIViewController {
     @IBOutlet weak var contact: UILabel!
     @IBOutlet weak var reviewTableView: UITableView!
     @IBOutlet weak var background: UIView!
-    
-    var moreInfo : TouristAndRestaurant?
-    
+        
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let safeInfo = moreInfo{
-            name.text = safeInfo.name
-            address.text = safeInfo.address
-            contact.text = safeInfo.contact
-        }
-        // Do any additional setup after loading the view.
         setUp()
     }
     func setUp(){

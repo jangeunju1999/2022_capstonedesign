@@ -18,8 +18,13 @@ class MainPageViewController : UIViewController{
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var temperatureSign: UILabel!
     @IBOutlet weak var temperatureSignTwo: UILabel!
+    @IBOutlet weak var pedoMeterView: UIView!
+    @IBOutlet weak var pedoMeterImageView: UIImageView!
+    @IBOutlet weak var stepCountLabel: UILabel!
+    @IBOutlet weak var walkingRunningDistanceLabel: UILabel!
     
     var weatherManager = WeatherManager()
+    var pedoManager = PedoMeterManager()
     
     lazy var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
@@ -46,6 +51,12 @@ class MainPageViewController : UIViewController{
         }
         
         naverMapView.positionMode = .direction
+        pedoManager.getStepCount { result in
+            self.stepCountLabel.text = String(format: "%.0f", result)
+        }
+        pedoManager.getDistanceWalkingRunning { result in
+            self.walkingRunningDistanceLabel.text = String(format: "%.3f", result)
+        }
     }
     
     func setUp(){
@@ -54,6 +65,8 @@ class MainPageViewController : UIViewController{
         //self.UIBarButtonItem.appearance().tintColor = UIColor.white
         weatherView.layer.cornerRadius = 10
         conditionImageView.layer.cornerRadius = 10
+        pedoMeterView.layer.cornerRadius = 10
+        pedoMeterImageView.layer.cornerRadius = 10
         
         //temperature label shadow
         temperatureLabel.layer.shadowOffset = CGSize(width: 3, height: 3)
@@ -70,6 +83,9 @@ class MainPageViewController : UIViewController{
         temperatureSignTwo.layer.shadowOpacity = 0.8
         temperatureSignTwo.layer.shadowRadius = 2
         temperatureSignTwo.layer.shadowColor = UIColor.black.cgColor
+        
+        //access healthData
+        pedoManager.requestAuthorization()
     }
     
     @IBAction func pressedSidebarButton(_ sender: UIBarButtonItem) {
