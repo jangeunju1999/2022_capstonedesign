@@ -1,2 +1,2 @@
-chajjip/chajjip/** linguist-documentation=false
-chajjip/chajjip/** linguist-vendored=false
+* linguist-vendored
+*.swift linguist-vendored=false
