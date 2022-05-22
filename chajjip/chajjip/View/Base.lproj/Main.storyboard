@@ -183,7 +183,6 @@
                         <barButtonItem key="leftBarButtonItem" image="line.3.horizontal" catalog="system" id="8H0-T8-jn0">
                             <connections>
                                 <action selector="pressedSidebarButton:" destination="lX9-2h-XY8" id="sBo-4a-WAe"/>
-                                <segue destination="Mly-4h-zba" kind="show" id="yrj-xV-v47"/>
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
@@ -206,6 +205,7 @@
                         <outlet property="temperatureSignTwo" destination="iou-Ya-NdG" id="Y2u-14-NPm"/>
                         <outlet property="walkingRunningDistanceLabel" destination="scj-U6-zCw" id="l3e-9J-Dxc"/>
                         <outlet property="weatherView" destination="SsZ-Ux-99n" id="3gM-wY-J3S"/>
+                        <segue destination="Mly-4h-zba" kind="show" identifier="showSideMenu" id="l3k-j1-n2Q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ZT-cK-qmy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -220,12 +220,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1jV-Yw-IaQ" customClass="NMFMapView">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1jV-Yw-IaQ" customClass="NMFMapView">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rpq-nv-LwN">
+                                <rect key="frame" x="19.999999999999996" y="614.33333333333337" width="58.666666666666657" height="42.666666666666629"/>
+                                <color key="tintColor" name="AccentColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" image="target" catalog="system" imagePlacement="top" title="현재위치">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="14"/>
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="10"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="setCurrentLocation:" destination="Xoy-v3-i8o" eventType="touchUpInside" id="gFX-jS-tpM"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UAW-tW-Zez">
+                                <rect key="frame" x="144.66666666666666" y="30" width="124.99999999999997" height="31"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" name="AccentColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="현재위치에서 검색"/>
+                                <connections>
+                                    <action selector="pressCurrentSearch:" destination="Xoy-v3-i8o" eventType="touchUpInside" id="tT1-Wx-o8Q"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jxw-mM-iGr">
-                                <rect key="frame" x="170.66666666666666" y="641" width="73" height="31"/>
+                                <rect key="frame" x="170.66666666666666" y="641" width="72.666666666666657" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="목록보기"/>
                                 <connections>
@@ -236,15 +259,18 @@
                         <viewLayoutGuide key="safeArea" id="mEI-uv-BNU"/>
                         <color key="backgroundColor" red="0.01176470588" green="0.29411764709999999" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="1jV-Yw-IaQ" firstAttribute="bottom" secondItem="mEI-uv-BNU" secondAttribute="bottom" id="Eaa-UI-mho"/>
-                            <constraint firstItem="1jV-Yw-IaQ" firstAttribute="top" secondItem="mEI-uv-BNU" secondAttribute="top" id="KOL-Mx-jGZ"/>
-                            <constraint firstItem="1jV-Yw-IaQ" firstAttribute="trailing" secondItem="mEI-uv-BNU" secondAttribute="trailing" id="PRF-7e-O2J"/>
+                            <constraint firstItem="Rpq-nv-LwN" firstAttribute="leading" secondItem="mEI-uv-BNU" secondAttribute="leading" constant="20" id="78n-aw-ZT8"/>
+                            <constraint firstItem="UAW-tW-Zez" firstAttribute="top" secondItem="mEI-uv-BNU" secondAttribute="top" constant="30" id="B74-EO-JKT"/>
+                            <constraint firstItem="mEI-uv-BNU" firstAttribute="bottom" secondItem="Rpq-nv-LwN" secondAttribute="bottom" constant="30" id="ELa-9o-ufn"/>
+                            <constraint firstItem="UAW-tW-Zez" firstAttribute="centerX" secondItem="fJC-Xy-QnT" secondAttribute="centerX" id="M2C-N9-pUn"/>
                             <constraint firstItem="mEI-uv-BNU" firstAttribute="bottom" secondItem="Jxw-mM-iGr" secondAttribute="bottom" constant="15" id="PoC-Mi-4oN"/>
                             <constraint firstItem="Jxw-mM-iGr" firstAttribute="centerX" secondItem="fJC-Xy-QnT" secondAttribute="centerX" id="RQE-Ea-H95"/>
-                            <constraint firstItem="1jV-Yw-IaQ" firstAttribute="leading" secondItem="mEI-uv-BNU" secondAttribute="leading" id="uTU-pB-NqY"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="맛집" image="fork.knife" catalog="system" id="pcM-8A-WeS"/>
+                    <connections>
+                        <outlet property="naverMapView" destination="1jV-Yw-IaQ" id="qgu-fF-EkY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ur6-IR-pQW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -387,10 +413,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tn4-c7-ZRD" customClass="NMFMapView">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tn4-c7-ZRD" customClass="NMFMapView">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dme-ZE-pPN">
+                                <rect key="frame" x="144.66666666666666" y="30" width="124.99999999999997" height="31"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" name="AccentColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="현재위치에서 검색"/>
+                                <connections>
+                                    <action selector="pressCurrentSearch:" destination="Xoy-v3-i8o" eventType="touchUpInside" id="enU-Ad-4Kv"/>
+                                    <action selector="pressCurrentSearch:" destination="fTq-Wz-lby" eventType="touchUpInside" id="ojS-hT-8Pe"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W6p-JA-h4r">
+                                <rect key="frame" x="19.999999999999996" y="614.33333333333337" width="58.666666666666657" height="42.666666666666629"/>
+                                <color key="tintColor" name="AccentColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" image="target" catalog="system" imagePlacement="top" title="현재위치">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="14"/>
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="10"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="setCurrentLocation:" destination="fTq-Wz-lby" eventType="touchUpInside" id="oZK-Iy-ZjH"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vOG-lg-1Ef">
                                 <rect key="frame" x="170.66666666666666" y="641" width="73" height="31"/>
                                 <state key="normal" title="Button"/>
@@ -403,12 +453,12 @@
                         <viewLayoutGuide key="safeArea" id="73r-gM-b05"/>
                         <color key="backgroundColor" red="0.01176470588" green="0.29411764709999999" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="73r-gM-b05" firstAttribute="bottom" secondItem="Tn4-c7-ZRD" secondAttribute="bottom" id="5bk-Iw-59t"/>
-                            <constraint firstItem="Tn4-c7-ZRD" firstAttribute="leading" secondItem="73r-gM-b05" secondAttribute="leading" id="9YQ-Iu-L1d"/>
-                            <constraint firstItem="73r-gM-b05" firstAttribute="trailing" secondItem="Tn4-c7-ZRD" secondAttribute="trailing" id="BTZ-os-My4"/>
+                            <constraint firstItem="73r-gM-b05" firstAttribute="bottom" secondItem="W6p-JA-h4r" secondAttribute="bottom" constant="30" id="4Nz-eX-WVn"/>
                             <constraint firstItem="73r-gM-b05" firstAttribute="bottom" secondItem="vOG-lg-1Ef" secondAttribute="bottom" constant="15" id="E7s-qW-Fq5"/>
                             <constraint firstItem="vOG-lg-1Ef" firstAttribute="centerX" secondItem="RO6-qY-yae" secondAttribute="centerX" id="L5d-SJ-Tl5"/>
-                            <constraint firstItem="Tn4-c7-ZRD" firstAttribute="top" secondItem="73r-gM-b05" secondAttribute="top" id="bxY-Tc-Pbe"/>
+                            <constraint firstItem="W6p-JA-h4r" firstAttribute="leading" secondItem="73r-gM-b05" secondAttribute="leading" constant="20" id="Ter-Nt-isa"/>
+                            <constraint firstItem="Dme-ZE-pPN" firstAttribute="top" secondItem="73r-gM-b05" secondAttribute="top" constant="30" id="deq-f7-FC1"/>
+                            <constraint firstItem="Dme-ZE-pPN" firstAttribute="centerX" secondItem="RO6-qY-yae" secondAttribute="centerX" id="iv7-Sh-gGj"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="관광지" image="bag" catalog="system" id="CYZ-Is-SaZ"/>
@@ -445,7 +495,7 @@
         <!--상세 정보-->
         <scene sceneID="ccF-zQ-Naf">
             <objects>
-                <viewController id="rUc-TW-tiS" customClass="MoreInfoViewController" customModule="chajjip" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MoreInfoViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rUc-TW-tiS" customClass="MoreInfoViewController" customModule="chajjip" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sNC-he-ZNw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -892,7 +942,7 @@
         <!--Custom Side Menu Navigation-->
         <scene sceneID="RFJ-EL-b1g">
             <objects>
-                <navigationController id="Mly-4h-zba" customClass="CustomSideMenuNavigation" customModule="chajjip" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="customSideNav" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Mly-4h-zba" customClass="CustomSideMenuNavigation" customModule="chajjip" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="BY4-Pe-1rf"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="pVV-C4-rhk">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -1448,31 +1498,6 @@
             </objects>
             <point key="canvasLocation" x="-791" y="1132"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="8Fy-vM-mbF">
-            <objects>
-                <viewController id="YlN-qa-f5q" customClass="ViewController" customModule="chajjip" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="AOY-W6-8rW">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rhf-DN-MSa" customClass="NMFMapView">
-                                <rect key="frame" x="41" y="124" width="322" height="528"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </view>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="PDh-31-dsJ"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <connections>
-                        <outlet property="naverMapView" destination="rhf-DN-MSa" id="G1h-2s-0mR"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="PTC-Zb-fWh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2903" y="203"/>
-        </scene>
         <!--홈-->
         <scene sceneID="tw7-Yy-QL8">
             <objects>
@@ -1527,6 +1552,7 @@
         <image name="pedometer_Background" width="2322" height="1517"/>
         <image name="star" catalog="system" width="128" height="116"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
+        <image name="target" catalog="system" width="128" height="121"/>
         <image name="textfieldImage" width="294" height="40"/>
         <image name="touristEx" width="587.5" height="384"/>
         <image name="whiteCircle" width="161" height="146"/>

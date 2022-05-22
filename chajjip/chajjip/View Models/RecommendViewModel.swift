@@ -6,12 +6,17 @@
 //
 
 import Foundation
+import UIKit
 
 struct RecommendViewModel{
     var shopList : [Shop]
     
     func shopAtIndex(_ index : Int) -> ShopInfoViewModel{
         return ShopInfoViewModel(model: shopList[index])
+    }
+    
+    func numOfShopList()->Int{
+        return shopList.count
     }
 }
 
@@ -29,7 +34,18 @@ struct ShopInfoViewModel{
         return shop.address
     }
     
+    var shopImage : UIImage{
+        return shop.shopImage
+    }
+    
     var contact : String{
         return shop.contactNumber
+    }
+    
+    var latitude : String{
+        return shop.latitude
+    }
+    var longitude : String{
+        return shop.longitude
     }
 }

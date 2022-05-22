@@ -13,24 +13,6 @@ class BarcodeReaderViewController: UIViewController, QRCodeReaderViewControllerD
     
     
     
-    
-    /*
-    MARK: [QR 코드 스캔 필요 사항]
-    1. info.plist 권한 : Privacy - Camera Usage Description
-    2. 라이브러리 설치 git : https://github.com/yannickl/QRCodeReader.swift.git
-    3. SPM 패키지 매니저 사용해 설치 시 참고 : branch >> 라이브러리 설치 진행
-    4. 필요 import :
-       - import AVFoundation
-       - import QRCodeReader
-    5. 필요 딜리게이트 : QRCodeReaderViewControllerDelegate
-    6. 로직 :
-      - 카메라 권한 상태 퍼미션 인증 확인
-      - 카메라 호출 및 QR 스캔 시작 실시
-      - QR 스캔 완료 시 카메라 활성 창 닫기 및 스캔 종료 실시
-    */
-    
-    
-    
     // MARK: [액티비티 메모리 로드 수행 실시]
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,13 +58,6 @@ class BarcodeReaderViewController: UIViewController, QRCodeReaderViewControllerD
     // MARK: [퍼미션 인증 거부된 권한을 담는 배열]
     var permissionNoArray : Array<String> = []
     
-    
-    
-    // MARK: [카메라 권한 인증 확인 메소드]
-    /*
-    [카메라 권한 요청]
-    필요 : import AVFoundation
-    */
     func checkCameraPermission() {
         print("")
         print("===============================")
@@ -204,9 +179,6 @@ class BarcodeReaderViewController: UIViewController, QRCodeReaderViewControllerD
         self.dismiss(animated: true, completion: nil)
     }
     
-    
-    
-    // MARK: [alert 팝업창 호출 메소드 정의 실시 : 이벤트 호출 시]
     // 호출 방법 : showAlert(tittle: "title", content: "content", okBtb: "확인", noBtn: "취소")
     func showAlert(tittle:String, content:String, okBtb:String, noBtn:String) {
         // [UIAlertController 객체 정의 실시]

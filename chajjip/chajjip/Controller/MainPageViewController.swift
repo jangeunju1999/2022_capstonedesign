@@ -25,6 +25,8 @@ class MainPageViewController : UIViewController{
     
     var weatherManager = WeatherManager()
     var pedoManager = PedoMeterManager()
+    var visitedShopManager = VisitedShopManager()
+    var visitedShopVM : RecommendViewModel!
     
     lazy var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
@@ -38,7 +40,6 @@ class MainPageViewController : UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //UserDefaults.standard.set(false, forKey: "status")
         setUp()
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.91, green: 0.30, blue: 0.24, alpha: 1.00)
         weatherManager.delegate = self
@@ -50,7 +51,7 @@ class MainPageViewController : UIViewController{
             locationManager.startUpdatingLocation()
         }
         
-        naverMapView.positionMode = .direction
+        //다녀온 여행지에 현재위치 추가할지는 고려사항
         pedoManager.getStepCount { result in
             self.stepCountLabel.text = String(format: "%.0f", result)
         }
@@ -61,8 +62,6 @@ class MainPageViewController : UIViewController{
     
     func setUp(){
         let navBarAppearance = UINavigationBarAppearance()
-        //self.navigationController?.navigationBar.prefersLargeTitles = true
-        //self.UIBarButtonItem.appearance().tintColor = UIColor.white
         weatherView.layer.cornerRadius = 10
         conditionImageView.layer.cornerRadius = 10
         pedoMeterView.layer.cornerRadius = 10
@@ -89,10 +88,13 @@ class MainPageViewController : UIViewController{
     }
     
     @IBAction func pressedSidebarButton(_ sender: UIBarButtonItem) {
-        if !UserDefaults.standard.bool(forKey: "status"){
-            performSegue(withIdentifier: "loginSidebar", sender: nil)
-        }else{
-            performSegue(withIdentifier: "profileSidebar", sender: nil)
+            performSegue(withIdentifier: "showSideMenu", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is CustomSideMenuNavigation{
+            guard let vc = segue.destination as? CustomSideMenuNavigation else {return}
+            vc.customDelegate = self
         }
     }
 }
@@ -113,14 +115,7 @@ extension MainPageViewController : WeatherManagerDelegate{
 }
 
 extension MainPageViewController : CLLocationManagerDelegate{
-    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-//        let realtimeLocation : CLLocation = locations[locations.count - 1]
-//        let longtitude : CLLocationDegrees = realtimeLocation.coordinate.longitude
-//        let latitude : CLLocationDegrees = realtimeLocation.coordinate.latitude
-//        print("naver : x:\(naverMapView.longitude), y:\(naverMapView.latitude)")
-//        print("corelocation : x:\(longtitude), y:\(latitude)")
         if let location = locations.last{
             locationManager.stopUpdatingLocation()
             let lat = location.coordinate.latitude
@@ -134,3 +129,42 @@ extension MainPageViewController : CLLocationManagerDelegate{
     }
 }
 
+extension MainPageViewController : CustomSideMenuNavigationDelegate{
+    func showSideMenu() {
+        let transport = AddressToCoordinate()
+        visitedShopManager.getVisitedShopList(user: User.shared) { result in
+            self.visitedShopVM = RecommendViewModel(shopList: result)
+            transport.addressToCoordinate(model: self.visitedShopVM) { result in
+                print("after transport \(result)")
+                for item in 0..<result.shopList.count{
+                    self.setMarker(lat: Double(result.shopList[item].latitude)!, lon: Double(result.shopList[item].longitude)!)
+                    self.visitedShopVM.shopList[item].longitude = result.shopList[item].longitude
+                    self.visitedShopVM.shopList[item].latitude = result.shopList[item].latitude
+                }
+                //좌표들의 중앙값 계산후 카메라 위치 이동
+                self.getMiddleCameraLocation()
+            }
+            
+        }
+        
+    }
+    
+    func setMarker(lat : Double, lon : Double){
+        let marker = NMFMarker()
+        marker.position = NMGLatLng(lat: lat, lng: lon)
+        marker.mapView = self.naverMapView
+    }
+    
+    func getMiddleCameraLocation(){
+        var sumLon = 0.0
+        var sumLat = 0.0
+        for item in visitedShopVM.shopList{
+            sumLon += Double(item.longitude)!
+            sumLat += Double(item.latitude)!
+        }
+        
+        let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: sumLat / Double(visitedShopVM.shopList.count), lng: sumLon / Double(visitedShopVM.shopList.count) ))
+            naverMapView.moveCamera(cameraUpdate)
+            naverMapView.zoomLevel = 12.0
+    }
+}

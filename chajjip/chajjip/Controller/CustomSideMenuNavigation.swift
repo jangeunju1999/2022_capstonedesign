@@ -8,12 +8,20 @@
 import Foundation
 import SideMenu
 
+protocol CustomSideMenuNavigationDelegate{
+    func showSideMenu()
+}
+
 class CustomSideMenuNavigation : SideMenuNavigationController{
+    
+    var customDelegate : CustomSideMenuNavigationDelegate!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.presentationStyle = .menuSlideIn
         self.menuWidth = self.view.frame.width * 0.7
-        //setUpBarColor()
+        let rootVC = self.viewControllers.first as? SideMenuViewController
+        rootVC?.delegate = self
     }
     
     func setUpBarColor(){
@@ -23,6 +31,10 @@ class CustomSideMenuNavigation : SideMenuNavigationController{
         UINavigationBar.appearance().standardAppearance = navBarAppearance
         UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
     }
-    
-    
+}
+
+extension CustomSideMenuNavigation : SideMenuDelegate{
+    func successLogin() {
+        customDelegate.showSideMenu()
+    }
 }
